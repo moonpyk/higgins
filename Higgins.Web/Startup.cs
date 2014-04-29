@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Owin;
+using Microsoft.Owin.Extensions;
 using Owin;
 
 [assembly: OwinStartup(typeof(Higgins.Web.Startup))]
@@ -12,6 +13,7 @@ namespace Higgins.Web
         public void Configuration(IAppBuilder app)
         {
             app.UseNancy();
+            app.UseStageMarker(PipelineStage.MapHandler);
         }
     }
 }

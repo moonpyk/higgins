@@ -1,4 +1,5 @@
 ﻿using Nancy;
+using Nancy.Security;
 
 namespace Higgins.Web.Modules
 {
@@ -10,6 +11,8 @@ namespace Higgins.Web.Modules
             {
                 return View["index"];
             };
+
+            Get["/ping"] = _ => HttpStatusCode.OK;
         }
     }
 }
