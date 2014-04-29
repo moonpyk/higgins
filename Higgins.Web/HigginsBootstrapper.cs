@@ -1,13 +1,36 @@
-﻿using Autofac;
+﻿using System.Diagnostics;
+using Autofac;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Autofac;
 using Nancy.Diagnostics;
+using Nancy.Hosting.Aspnet;
 
 namespace Higgins.Web
 {
     public class HigginsBootstrapper : AutofacNancyBootstrapper
     {
+        private readonly IRootPathProvider _rootPathProvider;
+
+        public HigginsBootstrapper()
+            : this(null)
+        {
+
+        }
+
+        public HigginsBootstrapper(IRootPathProvider pv)
+        {
+            _rootPathProvider = pv;
+        }
+
+        protected override IRootPathProvider RootPathProvider
+        {
+            get
+            {
+                return _rootPathProvider ?? base.RootPathProvider;
+            }
+        }
+
 #if DEBUG
         protected override DiagnosticsConfiguration DiagnosticsConfiguration
         {
