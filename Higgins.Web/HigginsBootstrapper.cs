@@ -36,7 +36,6 @@ namespace Higgins.Web
         {
             get
             {
-
                 return new DiagnosticsConfiguration
                 {
                     Password = "HigginsDebug"

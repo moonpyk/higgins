@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Higgins.Web;
-using Microsoft.Owin.Extensions;
+﻿using Higgins.Web;
 using Nancy;
 using Nancy.Owin;
 using Owin;
+using System;
+using System.IO;
 
 namespace Higgins.SelfHost
 {
