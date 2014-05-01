@@ -7,7 +7,11 @@ namespace Higgins.Web.Modules
     {
         public ServiceModule(ILifetimeScope scope)
         {
-            ModulePath = "/s";
+            ModulePath = "/s/{project?#default#}";
+
+#if DEBUG
+            Get["/diag"] = _ => _;
+#endif
         }
     }
 }
