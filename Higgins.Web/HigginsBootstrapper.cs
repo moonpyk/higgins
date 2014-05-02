@@ -14,9 +14,7 @@ namespace Higgins.Web
 
         public HigginsBootstrapper()
             : this(null)
-        {
-
-        }
+        { }
 
         public HigginsBootstrapper(IRootPathProvider pv)
         {
