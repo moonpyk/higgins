@@ -7,15 +7,25 @@ namespace Higgins.Core
 {
     public class Git
     {
-        public static async Task<GitLogResult> Log(string wd)
+        public static async Task<GitLogResult> Log(string wd, IEnumerable<string> args = null)
         {
-            var res = await Execute(wd, new[]
+            var argsL = new List<string>
             {
-                "log", 
+                "log",
                 "--format=%H|%at|%an|%ae|%s"
-            }).ConfigureAwait(false);
+            };
 
-            return new GitLogResult(res.Output);
+            if (args != null)
+            {
+                argsL.AddRange(args);
+            }
+
+            var res = await Execute(wd, argsL).ConfigureAwait(false);
+
+            return new GitLogResult(res.Output)
+            {
+                Code = res.Code
+            };
         }
 
         public static async Task<GitRawResult> Execute(string wd, IEnumerable<string> args)
@@ -37,13 +47,13 @@ namespace Higgins.Core
                 var sbStdErr = new StringBuilder();
                 var sbOut    = new StringBuilder();
 
-                p.OutputDataReceived += delegate(object sender, DataReceivedEventArgs eventArgs)
+                p.OutputDataReceived += (sender, eventArgs) =>
                 {
                     sbStdOut.AppendLine(eventArgs.Data);
                     sbOut.AppendLine(eventArgs.Data);
                 };
 
-                p.ErrorDataReceived += delegate(object sender, DataReceivedEventArgs eventArgs)
+                p.ErrorDataReceived += (sender, eventArgs) =>
                 {
                     sbStdErr.AppendLine(eventArgs.Data);
                     sbOut.AppendLine(eventArgs.Data);

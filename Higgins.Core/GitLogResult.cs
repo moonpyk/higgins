@@ -5,7 +5,7 @@ using Higgins.Core.Lib;
 
 namespace Higgins.Core
 {
-    public class GitLogResult
+    public class GitLogResult : IGitResult
     {
         public GitLogResult(string log)
         {
@@ -49,5 +49,7 @@ namespace Higgins.Core
 
             public string Message { get; set; }
         }
+
+        public int Code { get; set; }
     }
 }
