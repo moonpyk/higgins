@@ -109,7 +109,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="packages.config" />
-    <Content Include="higgins.json" />
+    <Content Include="Config\higgins.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
