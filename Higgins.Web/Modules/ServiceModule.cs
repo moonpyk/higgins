@@ -1,12 +1,13 @@
 ﻿using Autofac;
-using Higgins.Web.Lib;
+using Higgins.Core;
 using Nancy;
+using Nancy.Responses;
 
 namespace Higgins.Web.Modules
 {
     public class ServiceModule : NancyModule
     {
-        private const string DefaultProjectString = "#default#";
+        private const string DefaultProjectString = "[default]";
 
         public ServiceModule(ILifetimeScope scope)
         {
@@ -17,9 +18,20 @@ namespace Higgins.Web.Modules
             {
                 var res = await Git.Execute(scope.Resolve<IRootPathProvider>().GetRootPath(), new[] { "status" });
 
-                return res;
+                return new
+                {
+                    _.project,
+                    res
+                };
+            };
+
+            Get["/log", true] = async (o, token) =>
+            {
+                return await Git.Log(scope.Resolve<IRootPathProvider>().GetRootPath());
             };
 #endif
+
+            Get["/foo"] = o => new RedirectResponse("/");
         }
     }
 }

@@ -3,11 +3,22 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Higgins.Web.Lib
+namespace Higgins.Core
 {
     public class Git
     {
-        public static async Task<ProcessResult> Execute(string wd, IEnumerable<string> args)
+        public static async Task<GitLogResult> Log(string wd)
+        {
+            var res = await Execute(wd, new[]
+            {
+                "log", 
+                "--format=%H|%at|%an|%ae|%s"
+            }).ConfigureAwait(false);
+
+            return new GitLogResult(res.Output);
+        }
+
+        public static async Task<GitRawResult> Execute(string wd, IEnumerable<string> args)
         {
             var sInfo = InitGitProcess(wd, args);
 
@@ -39,12 +50,12 @@ namespace Higgins.Web.Lib
                 };
 
                 // ReSharper disable once AccessToDisposedClosure
-                await Task.Run(() => p.WaitForExit());
+                await Task.Run(() => p.WaitForExit()).ConfigureAwait(false);
 
                 p.CancelErrorRead();
                 p.CancelOutputRead();
 
-                return new ProcessResult
+                return new GitRawResult
                 {
                     Code           = p.ExitCode,
                     Output         = sbOut.ToString().Trim(),
@@ -65,33 +76,6 @@ namespace Higgins.Web.Lib
                 FileName               = "git.exe",
                 Arguments              = string.Join(" ", args)
             };
-        }
-    }
-
-    public class ProcessResult
-    {
-        public string StandardOutput
-        {
-            get;
-            set;
-        }
-
-        public string StandardError
-        {
-            get;
-            set;
-        }
-
-        public string Output
-        {
-            get;
-            set;
-        }
-
-        public int Code
-        {
-            get;
-            set;
         }
     }
 }
