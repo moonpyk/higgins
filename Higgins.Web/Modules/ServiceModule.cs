@@ -13,18 +13,28 @@ namespace Higgins.Web.Modules
         {
             ModulePath = string.Format("/s/{{project?{0}}}", DefaultProjectString);
 
-            var rootPathProvider = scope.Resolve<IRootPathProvider>();
+            var rpp = scope.Resolve<IRootPathProvider>();
 
             Get["/log", true] = async (o, token) =>
             {
-                var res = await Git.Log(rootPathProvider.GetRootPath());
+                var res = await Git.Log(rpp.GetRootPath());
+
+                if (res.Code != 0)
+                {
+                    throw new InvalidGitResultException(res.Code);
+                }
 
                 return res.Entries;
             };
 
             Get["/incoming", false] = async (o, token) =>
             {
-                var res = await Git.Log(rootPathProvider.GetRootPath(), new[] { "HEAD..origin/master" });
+                var res = await Git.Log(rpp.GetRootPath(), new[] { "HEAD..origin/master" });
+
+                if (res.Code != 0)
+                {
+                    throw new InvalidGitResultException(res.Code);
+                }
 
                 return res.Entries;
             };
@@ -32,7 +42,7 @@ namespace Higgins.Web.Modules
 #if DEBUG
             Get["/diag", true] = async (_, tk) =>
             {
-                var res = await Git.Execute(rootPathProvider.GetRootPath(), new[] { "status" });
+                var res = await Git.Execute(rpp.GetRootPath(), new[] { "status" });
 
                 return new
                 {
@@ -40,11 +50,7 @@ namespace Higgins.Web.Modules
                     res
                 };
             };
-
-
 #endif
-
-            Get["/foo"] = o => new RedirectResponse("/");
         }
     }
 }
