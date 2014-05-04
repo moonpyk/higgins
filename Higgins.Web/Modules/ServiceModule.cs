@@ -15,7 +15,7 @@ namespace Higgins.Web.Modules
 
             var rpp = scope.Resolve<IRootPathProvider>();
 
-            Get["/log", true] = async (o, token) =>
+            Get["/log", true] = async (_, token) =>
             {
                 var res = await Git.Log(rpp.GetRootPath());
 
@@ -27,9 +27,14 @@ namespace Higgins.Web.Modules
                 return res.Entries;
             };
 
-            Get["/incoming", false] = async (o, token) =>
+            Get["/incoming", false] = async (_, token) =>
             {
-                var res = await Git.Log(rpp.GetRootPath(), new[] { "HEAD..origin/master" });
+                var upstream = "origin/master";
+
+                var res = await Git.Log(
+                    rpp.GetRootPath(),
+                    new[] { string.Format("HEAD..{0}", upstream) }
+                );
 
                 if (res.Code != 0)
                 {
