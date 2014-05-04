@@ -73,6 +73,8 @@ namespace Higgins.Core
                 RedirectStandardOutput = true,
                 UseShellExecute        = false,
                 WorkingDirectory       = wd,
+                StandardOutputEncoding = Encoding.UTF8,
+                StandardErrorEncoding  = Encoding.UTF8,
                 FileName               = "git.exe",
                 Arguments              = string.Join(" ", args)
             };
