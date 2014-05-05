@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Higgins.Web;
 using Microsoft.Owin.Hosting;
+using Nancy.Bootstrapper;
 
 namespace Higgins.SelfHost
 {
@@ -12,6 +13,8 @@ namespace Higgins.SelfHost
     {
         static void Main(string[] args)
         {
+            AppDomainAssemblyTypeScanner.LoadAssemblies(new RelativePathProvider().GetRootPath(), "*.dll");
+            
             var options = new StartOptions
             {
                 ServerFactory = "Nowin",

@@ -13,19 +13,19 @@ namespace Higgins.SelfHost
         {
             app.UseNancy(new NancyOptions
             {
-                Bootstrapper = new HigginsBootstrapper(new MyRootPathProvider())
+                Bootstrapper = new HigginsBootstrapper(new RelativePathProvider()),
             });
         }
-
-        class MyRootPathProvider : IRootPathProvider
+    }
+    
+    public class RelativePathProvider : IRootPathProvider
+    {
+        public string GetRootPath()
         {
-            public string GetRootPath()
-            {
-                return Path.GetFullPath(Path.Combine(
-                    AppDomain.CurrentDomain.BaseDirectory,
-                    "..\\..\\..\\Higgins.Web\\"
-                ));
-            }
+            return Path.GetFullPath(Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                ".."
+            ));
         }
     }
 }
