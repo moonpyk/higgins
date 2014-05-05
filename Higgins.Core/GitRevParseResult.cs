@@ -8,8 +8,22 @@ namespace Higgins.Core
             Output = Revision = output;
         }
 
-        public string Revision { get; private set; }
-        public int Code { get; private set; }
-        public string Output { get; private set; }
+        public string Revision
+        {
+            get;
+            private set;
+        }
+
+        public int Code
+        {
+            get;
+            private set;
+        }
+
+        public string Output
+        {
+            get;
+            private set;
+        }
     }
 }

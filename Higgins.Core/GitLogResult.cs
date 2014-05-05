@@ -40,6 +40,18 @@ namespace Higgins.Core
             private set;
         }
 
+        public int Code
+        {
+            get;
+            private set;
+        }
+
+        public string Output
+        {
+            get;
+            private set;
+        }
+
         public class LogEntry
         {
             public string Hash { get; set; }
@@ -52,8 +64,5 @@ namespace Higgins.Core
 
             public string Message { get; set; }
         }
-
-        public int Code { get; private set; }
-        public string Output { get; private set; }
     }
 }
