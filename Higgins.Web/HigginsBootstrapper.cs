@@ -3,6 +3,7 @@ using Autofac;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Autofac;
+using Nancy.Conventions;
 using Nancy.Diagnostics;
 using Nancy.Hosting.Aspnet;
 
@@ -27,6 +28,12 @@ namespace Higgins.Web
             {
                 return _rootPathProvider ?? base.RootPathProvider;
             }
+        }
+
+        protected override void ConfigureConventions(NancyConventions nancyConventions)
+        {
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("/Scripts"));
+            base.ConfigureConventions(nancyConventions);
         }
 
 #if DEBUG
