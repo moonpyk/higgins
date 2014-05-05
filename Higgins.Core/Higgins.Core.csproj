@@ -44,6 +44,7 @@
     <Compile Include="GitRawResult.cs" />
     <Compile Include="IGitResult.cs" />
     <Compile Include="InvalidGitResultException.cs" />
+    <Compile Include="Lib\PasswordHash.cs" />
     <Compile Include="Lib\DateTimeExtensions.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

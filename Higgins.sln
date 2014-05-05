@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Higgins.SelfHost", "Higgins
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Higgins.Core", "Higgins.Core\Higgins.Core.csproj", "{B1643F67-04EA-475D-95EE-AFC0AF674199}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Higgins.Tests", "Higgins.Tests\Higgins.Tests.csproj", "{77C1C303-6F98-45F6-9F38-9C4371A3F7CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B1643F67-04EA-475D-95EE-AFC0AF674199}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1643F67-04EA-475D-95EE-AFC0AF674199}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1643F67-04EA-475D-95EE-AFC0AF674199}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77C1C303-6F98-45F6-9F38-9C4371A3F7CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77C1C303-6F98-45F6-9F38-9C4371A3F7CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77C1C303-6F98-45F6-9F38-9C4371A3F7CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77C1C303-6F98-45F6-9F38-9C4371A3F7CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
