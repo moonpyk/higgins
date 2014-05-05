@@ -7,9 +7,12 @@ namespace Higgins.Core
 {
     public class GitLogResult : IGitResult
     {
-        public GitLogResult(string log)
+        public GitLogResult(int code, string log)
         {
+            Code    = code;
+            Output  = log;
             Entries = new List<LogEntry>();
+
             foreach (var l in log.Trim().Split('\n').Select(s => s.Trim().Split('|')).Where(l => l.Length >= 5))
             {
                 int dtInt;
@@ -20,10 +23,10 @@ namespace Higgins.Core
 
                 var e = new LogEntry
                 {
-                    Hash = l[0],
-                    Date = dtInt.FromUnixTime(),
-                    Author = l[2],
-                    Email = l[3],
+                    Hash    = l[0],
+                    Date    = dtInt.FromUnixTime(),
+                    Author  = l[2],
+                    Email   = l[3],
                     Message = l[4]
                 };
 
@@ -50,6 +53,7 @@ namespace Higgins.Core
             public string Message { get; set; }
         }
 
-        public int Code { get; set; }
+        public int Code { get; private set; }
+        public string Output { get; private set; }
     }
 }

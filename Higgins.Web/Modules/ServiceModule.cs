@@ -15,6 +15,18 @@ namespace Higgins.Web.Modules
 
             var rpp = scope.Resolve<IRootPathProvider>();
 
+            Get["/status", true] = async (_, token) =>
+            {
+                var res = await Git.RevParse(rpp.GetRootPath(), new[] { "HEAD" });
+
+                if (res.Code != 0)
+                {
+                    throw new InvalidGitResultException(res.Code);
+                }
+
+                return res.Revision;
+            };
+
             Get["/log", true] = async (_, token) =>
             {
                 var res = await Git.Log(rpp.GetRootPath());

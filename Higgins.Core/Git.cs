@@ -7,6 +7,22 @@ namespace Higgins.Core
 {
     public class Git
     {
+        public static async Task<GitRevParseResult> RevParse(string wd, IEnumerable<string> args = null)
+        {
+            var argsL = new List<string>
+            {
+                "rev-parse",
+            };
+
+            if (args != null)
+            {
+                argsL.AddRange(args);
+            }
+
+            var res = await Execute(wd, argsL).ConfigureAwait(false);
+
+            return new GitRevParseResult(res.Code, res.Output);
+        }
         public static async Task<GitLogResult> Log(string wd, IEnumerable<string> args = null)
         {
             var argsL = new List<string>
@@ -22,10 +38,7 @@ namespace Higgins.Core
 
             var res = await Execute(wd, argsL).ConfigureAwait(false);
 
-            return new GitLogResult(res.Output)
-            {
-                Code = res.Code
-            };
+            return new GitLogResult(res.Code, res.Output);
         }
 
         public static async Task<GitRawResult> Execute(string wd, IEnumerable<string> args)

@@ -2,6 +2,7 @@
 {
     public interface IGitResult
     {
-        int Code { get; set; }
+        int Code { get; }
+        string Output { get;  }
     }
 }

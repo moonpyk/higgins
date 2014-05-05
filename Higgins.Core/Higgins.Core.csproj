@@ -42,6 +42,7 @@
     <Compile Include="Git.cs" />
     <Compile Include="GitLogResult.cs" />
     <Compile Include="GitRawResult.cs" />
+    <Compile Include="GitRevParseResult.cs" />
     <Compile Include="IGitResult.cs" />
     <Compile Include="InvalidGitResultException.cs" />
     <Compile Include="Lib\PasswordHash.cs" />
