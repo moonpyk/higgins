@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HigginsBootstrapper.cs" />
+    <Compile Include="Modules\ConfigurationModule.cs" />
     <Compile Include="Modules\IndexModule.cs" />
     <Compile Include="Modules\ServiceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

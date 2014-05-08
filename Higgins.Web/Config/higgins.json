@@ -1,8 +1,8 @@
 ﻿{
     "auth": {
         "enable": false,
-        "users:": {
-            "moonpyk": "pwhash"
+        "users": {
+            "moonpyk": "plaintext:password"
         },
         "groups": {
             "foo_group": ["moonpyk"]

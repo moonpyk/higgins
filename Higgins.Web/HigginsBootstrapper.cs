@@ -1,11 +1,14 @@
 ﻿using System.Diagnostics;
+using System.IO;
 using Autofac;
+using Higgins.Core.Config;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Autofac;
 using Nancy.Conventions;
 using Nancy.Diagnostics;
 using Nancy.Hosting.Aspnet;
+using Newtonsoft.Json;
 
 namespace Higgins.Web
 {
@@ -34,6 +37,19 @@ namespace Higgins.Web
         {
             nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("/Scripts"));
             base.ConfigureConventions(nancyConventions);
+        }
+
+        protected override void ConfigureApplicationContainer(ILifetimeScope scope)
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterType<HigginsConfigProvider>()
+                .AsSelf()
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder.Update(scope.ComponentRegistry);
+
+            base.ConfigureApplicationContainer(scope);
         }
 
 #if DEBUG
