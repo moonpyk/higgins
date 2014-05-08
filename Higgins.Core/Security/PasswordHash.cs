@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Higgins.Core.Lib
+namespace Higgins.Core.Security
 {
     public static class PasswordHash
     {

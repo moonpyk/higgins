@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Higgins.Core.Lib
+namespace Higgins.Core.Extensions
 {
     internal static class DateTimeExtensions
     {
