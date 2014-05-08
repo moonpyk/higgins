@@ -5,7 +5,7 @@
             "moonpyk": "pwhash"
         },
         "groups": {
-            "foo_group": []
+            "foo_group": ["moonpyk"]
         }
     },
     "projects": {
