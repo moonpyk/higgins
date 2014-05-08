@@ -5,7 +5,7 @@ using Higgins.Core.Security;
 namespace Higgins.Core.Config
 {
     [DataContract]
-    public class AuthConfig
+    public class AuthSection
     {
         [DataMember(Name = "enable")]
         public bool Enable

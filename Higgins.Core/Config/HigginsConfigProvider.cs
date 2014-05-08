@@ -28,7 +28,7 @@ namespace Higgins.Core.Config
 
         public bool Read()
         {
-            var temp = HigginsConfig.Parse(_configPath);
+            var temp = Configuration.Parse(_configPath);
 
             if (temp == null)
             {
@@ -39,7 +39,7 @@ namespace Higgins.Core.Config
             return true;
         }
 
-        public HigginsConfig Config
+        public Configuration Config
         {
             get;
             private set;

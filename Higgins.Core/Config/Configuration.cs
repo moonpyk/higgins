@@ -10,10 +10,30 @@ using Newtonsoft.Json;
 namespace Higgins.Core.Config
 {
     [DataContract]
-    public class HigginsConfig
+    public class Configuration
     {
+        public Configuration()
+        {
+            Auth = new AuthSection
+            {
+                Enable = true
+            };
+
+            Higgins = new HigginsSection
+            {
+                ConfigurationModule = false
+            };
+        }
+
         [DataMember(Name = "auth")]
-        public AuthConfig Auth
+        public AuthSection Auth
+        {
+            get;
+            set;
+        }
+
+        [DataMember(Name = "higgins")]
+        public HigginsSection Higgins
         {
             get;
             set;
@@ -31,11 +51,11 @@ namespace Higgins.Core.Config
             return JsonConvert.SerializeObject(this, f);
         }
 
-        public static HigginsConfig Parse(string path)
+        public static Configuration Parse(string path)
         {
             try
             {
-                return JsonConvert.DeserializeObject<HigginsConfig>(File.ReadAllText(path));
+                return JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(path));
 
             }
             catch (Exception) { }

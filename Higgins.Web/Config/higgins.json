@@ -8,6 +8,9 @@
             "foo_group": ["moonpyk"]
         }
     },
+    "higgins": {
+        "configuration_module": true
+    },
     "projects": {
         "bar_project": {
             "repo_path": "PATH\\TO\\REPO",

@@ -50,9 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\AuthConfig.cs" />
+    <Compile Include="Config\AuthSection.cs" />
     <Compile Include="Config\HigginsConfigProvider.cs" />
-    <Compile Include="Config\HigginsConfig.cs" />
+    <Compile Include="Config\Configuration.cs" />
+    <Compile Include="Config\HigginsSection.cs" />
     <Compile Include="Config\Project.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Git.cs" />
