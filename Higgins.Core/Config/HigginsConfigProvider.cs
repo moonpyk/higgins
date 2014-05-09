@@ -1,16 +1,13 @@
-﻿using System;
-using System.ComponentModel.Design;
-using System.Configuration;
-using System.IO;
-using Autofac;
+﻿using Autofac;
 using Nancy;
+using System;
+using System.IO;
 
 namespace Higgins.Core.Config
 {
-    public class HigginsConfigProvider
+    public class HigginsConfigProvider : IDisposable
     {
         private readonly string _configPath;
-        private FileSystemWatcher _watcher;
 
         public HigginsConfigProvider(ILifetimeScope container)
         {
@@ -21,9 +18,6 @@ namespace Higgins.Core.Config
             {
                 throw new InvalidOperationException("Unable to open Higgins configuration.");
             }
-
-            // _watcher = new FileSystemWatcher(_configPath);
-            // _watcher.Changed += (sender, args) => Read();
         }
 
         public bool Read()
@@ -43,6 +37,10 @@ namespace Higgins.Core.Config
         {
             get;
             private set;
+        }
+
+        public void Dispose()
+        {
         }
     }
 }

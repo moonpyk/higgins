@@ -18,11 +18,10 @@ namespace Higgins.Web.Modules
                 ? new NotFoundResponse() 
                 : null;
 
+            Get["/rehash"] = _ => hcp.Read();
+
 #if DEBUG
-            Get["/dump"] = _ =>
-            {
-                return hcp.Config;
-            };
+            Get["/dump"] = _ => hcp.Config;
 #endif
         }
     }
