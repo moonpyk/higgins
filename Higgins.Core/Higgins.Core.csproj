@@ -62,6 +62,7 @@
     <Compile Include="GitRevParseResult.cs" />
     <Compile Include="IGitResult.cs" />
     <Compile Include="InvalidGitResultException.cs" />
+    <Compile Include="Lib\DotObjectNotationHelper.cs" />
     <Compile Include="Security\PasswordHash.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
