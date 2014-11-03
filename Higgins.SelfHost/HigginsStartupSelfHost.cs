@@ -17,7 +17,7 @@ namespace Higgins.SelfHost
             });
         }
     }
-    
+
     public class RelativePathProvider : IRootPathProvider
     {
         public string GetRootPath()
